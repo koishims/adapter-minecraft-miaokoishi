@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-adapter-minecraft-miaokoishi",
   "description": "一个 Minecraft 适配器 通过 MiaoScript 的 MiaoKoishi 链接",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [

@@ -18,7 +18,7 @@ export class BaseBot<T extends BaseBot.Config = BaseBot.Config> extends Bot<T> {
 
     async getSelf() {
         return Object.assign({
-            avatar: ''
+            avatar: 'https://www.minecraft.net/etc.clientlibs/minecraft/clientlibs/main/resources/apple-icon-76x76.png'
         }, await this.internal.getSelf())
     }
 

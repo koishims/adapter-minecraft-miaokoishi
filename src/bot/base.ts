@@ -1,17 +1,10 @@
-import { Bot, Fragment, Schema, SendOptions } from 'koishi'
+import { Bot, Schema } from 'koishi'
 
 import { MinecraftMessenger } from './messager'
 
 export class BaseBot<T extends BaseBot.Config = BaseBot.Config> extends Bot<T> {
     public parent?: BaseBot
-
-    sendMessage(channelId: string, fragment: Fragment, guildId?: string, options?: SendOptions) {
-        return new MinecraftMessenger(this, channelId, guildId, options).send(fragment)
-    }
-
-    sendPrivateMessage(userId: string, fragment: Fragment, options?: SendOptions) {
-        return new MinecraftMessenger(this, userId, null, options).send(fragment)
-    }
+    static MessageEncoder = MinecraftMessenger
 
     async deleteMessage(channelId: string, messageId: string) {
     }

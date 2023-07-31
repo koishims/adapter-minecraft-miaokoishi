@@ -3,8 +3,9 @@ import { Bot, Schema } from 'koishi'
 import { MinecraftMessenger } from './messager'
 
 export class BaseBot<T extends BaseBot.Config = BaseBot.Config> extends Bot<T> {
-    public parent?: BaseBot
     static MessageEncoder = MinecraftMessenger
+
+    public parent?: BaseBot
 
     async deleteMessage(channelId: string, messageId: string) {
     }

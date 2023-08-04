@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-adapter-minecraft-miaokoishi",
   "description": "一个 Minecraft 适配器 通过 MiaoScript 的 MiaoKoishi 链接",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -19,14 +19,19 @@
   "keywords": [
     "chatbot",
     "koishi",
-    "plugin"
+    "plugin",
+    "minecraft",
+    "adapter",
+    "miaokoishi",
+    "miaowoo"
   ],
   "peerDependencies": {
     "koishi": "^4.13.8"
   },
-  "dependencies": {},
   "koishi": {
-    "description": {},
+    "description": {
+      "zh": "通过 MiaoKoishi 连接的 Minecraft 适配器"
+    },
     "service": {
       "required": [],
       "optional": [],

@@ -4,50 +4,14 @@ import { MinecraftMessenger } from './messager'
 
 export class BaseBot<T extends BaseBot.Config = BaseBot.Config> extends Bot<T> {
     public parent?: BaseBot
-
-    sendMessage(channelId: string, fragment: Fragment, guildId?: string, options?: SendOptions) {
-        return new MinecraftMessenger(this, channelId, guildId, options).send(fragment)
-    }
-
-    sendPrivateMessage(userId: string, fragment: Fragment, options?: SendOptions) {
-        return new MinecraftMessenger(this, userId, null, options).send(fragment)
-    }
-
-    async deleteMessage(channelId: string, messageId: string) {
-    }
+    static MessageEncoder = MinecraftMessenger
 
     async getSelf() {
-        return Object.assign({
-            avatar: 'https://www.minecraft.net/etc.clientlibs/minecraft/clientlibs/main/resources/apple-icon-76x76.png'
-        }, await this.internal.getSelf())
+        return this.internal.getSelf()
     }
 
     async getUser(userId: string) {
         return this.internal.getUser(userId)
-    }
-
-    async getFriendList() {
-        return this.internal.getFriendList()
-    }
-
-    async handleFriendRequest(messageId: string, approve: boolean, comment?: string) {
-        // await this.internal.setFriendAddRequest(messageId, approve, comment)
-    }
-
-    async handleGuildRequest(messageId: string, approve: boolean, comment?: string) {
-        // await this.internal.setGroupAddRequest(messageId, 'invite', approve, comment)
-    }
-
-    async handleGuildMemberRequest(messageId: string, approve: boolean, comment?: string) {
-        // await this.internal.setGroupAddRequest(messageId, 'add', approve, comment)
-    }
-
-    async deleteFriend(userId: string) {
-        // await this.internal.deleteFriend(userId)
-    }
-
-    async getMessageList(channelId: string, before?: string) {
-        return []
     }
 }
 

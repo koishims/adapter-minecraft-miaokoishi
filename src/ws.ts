@@ -103,6 +103,7 @@ export function accept(bot: Minecraft<Minecraft.BaseConfig & SharedConfig>) {
     })
 
     bot.socket.addEventListener('close', () => {
+        bot.offline()
         delete bot.internal._request
     })
 

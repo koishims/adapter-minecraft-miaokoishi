@@ -3,11 +3,17 @@ import { Bot, Context, Schema } from "koishi"
 import { BaseBot } from "./base"
 import { Internal } from "./internal"
 import { WsClient, WsServer } from "../ws"
+import { logger } from "../utils"
 
 export class Minecraft<T extends Minecraft.Config = Minecraft.Config> extends BaseBot<T> {
     constructor(ctx: Context, config: T) {
         super(ctx, config)
+        this.platform = 'minecraft'
+
         this.selfId = config.selfId
+        this.username = '等待链接...'
+        this.avatar = 'https://www.minecraft.net/etc.clientlibs/minecraft/clientlibs/main/resources/apple-icon-76x76.png'
+
         this.internal = new Internal()
 
         if (config.protocol === 'ws') {
@@ -18,20 +24,18 @@ export class Minecraft<T extends Minecraft.Config = Minecraft.Config> extends Ba
     }
 
     async stop() {
-        await super.stop()
+        return super.stop()
     }
 
     async initialize() {
         await Promise.all([
             this.getSelf().then(data => Object.assign(this, data)),
         ]).then(() => this.online(), error => {
-            console.log(error)
+            logger.error(error)
             this.offline(error)
         })
     }
 }
-
-Minecraft.prototype.platform = 'minecraft'
 
 export namespace Minecraft {
     export interface BaseConfig extends BaseBot.Config {

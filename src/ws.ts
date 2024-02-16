@@ -1,4 +1,5 @@
 import { Adapter, Context, Quester, Schema, Time, WebSocketLayer } from 'koishi'
+import type {} from '@koishijs/plugin-server'
 
 import { Minecraft } from './bot'
 import { dispatchSession, logger } from './utils'
@@ -34,13 +35,14 @@ export namespace WsClient {
 }
 
 export class WsServer extends Adapter.Server<Minecraft<Minecraft.BaseConfig & WsServer.Config>> {
+    static inject = ['server']
     public wsServer?: WebSocketLayer
 
     constructor(ctx: Context, bot: Minecraft) {
         super()
 
         const { path = '/miaokoishi' } = bot.config as WsServer.Config
-        this.wsServer = ctx.router.ws(path, (socket, { headers }) => {
+        this.wsServer = ctx.server.ws(path, (socket, { headers }) => {
             logger.debug('connected with', headers)
             if (headers['x-client-role'] !== 'Universal') {
                 return socket.close(1008, 'invalid x-client-role')

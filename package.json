@@ -25,6 +25,9 @@
     "miaokoishi",
     "miaowoo"
   ],
+  "devDependencies": {
+    "@koishijs/plugin-server": "^3.1.7"
+  }
   "peerDependencies": {
     "koishi": "^4.13.8"
   },
